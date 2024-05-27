@@ -7,10 +7,10 @@ servers:
   - url: "https://localhost:8086/api/v1/"
 
 paths:
-  /comunicacao/agendar:
+  /comunicados/agendamentos:
     post:
       tags:
-        - Comunicacao
+        - comunicados
       summary: Agendar Comunicação
       description: Endpoint para agendar uma comunicação.
       operationId: agendarComunicacao
@@ -46,11 +46,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
+    delete:
+      tags:
+        - comunicados
+      summary: Remover Comunicação Agendada
+      description: Endpoint para remover uma comunicação agendada.
+      operationId: removerComunicacao
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "66551ca2df20ca590c58abfd"
+          description: O ID da comunicação a ser removida.
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
 
-  /comunicacao/status:
+  /comunicados/agendamentos/status:
     get:
       tags:
-        - Comunicacao
+        - comunicados
       summary: Consultar Status da Comunicação
       description: Endpoint para consultar o status de uma comunicação.
       operationId: consultarStatusComunicacao
@@ -60,8 +95,7 @@ paths:
           required: true
           schema:
             type: string
-            format: uuid
-            example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
+            example: "66551ca2df20ca590c58abfd"
           description: O ID da comunicação a ser consultada.
       responses:
         200:
@@ -89,43 +123,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseError'
 
-  /comunicacao/remover:
-    delete:
-      tags:
-        - Comunicacao
-      summary: Remover Comunicação Agendada
-      description: Endpoint para remover uma comunicação agendada.
-      operationId: removerComunicacao
-      parameters:
-        - name: id
-          in: query
-          required: true
-          schema:
-            type: string
-            format: uuid
-            example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
-          description: O ID da comunicação a ser removida.
-      responses:
-        204:
-          description: No Content
-        404:
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
 
 components:
   schemas:
@@ -136,11 +133,16 @@ components:
         - destinatario
         - mensagem
       properties:
-        dataHoraEnvio:
+        dataEnvio:
           type: string
-          format: date-time
-          example: '2024-05-27T08:00:00Z'
-        destinatario:
+          example: '27/05/2024'
+        horaEnvio:
+          type: string
+          example: '08:00'
+        destinatario  :
+          type: string
+          example: "dowglasmaia@maia.com"
+        tipoDestinatario:
           type: string
           enum:
             - email
@@ -157,8 +159,7 @@ components:
       properties:
         id:
           type: string
-          format: uuid
-          example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
+          example: "66551ca2df20ca590c58abfd"
 
     StatusComunicacaoResponse:
       type: object
