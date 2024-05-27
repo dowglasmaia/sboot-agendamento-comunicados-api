@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: "API de Agendamento de Comunicação"
+  description: "API para agendamento de comunicação por meio de diferentes canais: email, SMS, push e WhatsApp."
+  version: 1.0.0
+servers:
+  - url: "https://localhost:8086/api/v1/"
+
+paths:
+  /comunicacao/agendar:
+    post:
+      tags:
+        - Comunicacao
+      summary: Agendar Comunicação
+      description: Endpoint para agendar uma comunicação.
+      operationId: agendarComunicacao
+      requestBody:
+        description: Dados para agendar uma comunicação.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgendamentoComunicacaoRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgendamentoComunicacaoResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+  /comunicacao/status:
+    get:
+      tags:
+        - Comunicacao
+      summary: Consultar Status da Comunicação
+      description: Endpoint para consultar o status de uma comunicação.
+      operationId: consultarStatusComunicacao
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
+          description: O ID da comunicação a ser consultada.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusComunicacaoResponse'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+  /comunicacao/remover:
+    delete:
+      tags:
+        - Comunicacao
+      summary: Remover Comunicação Agendada
+      description: Endpoint para remover uma comunicação agendada.
+      operationId: removerComunicacao
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
+          description: O ID da comunicação a ser removida.
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+
+components:
+  schemas:
+    AgendamentoComunicacaoRequest:
+      type: object
+      required:
+        - dataHoraEnvio
+        - destinatario
+        - mensagem
+      properties:
+        dataHoraEnvio:
+          type: string
+          format: date-time
+          example: '2024-05-27T08:00:00Z'
+        destinatario:
+          type: string
+          enum:
+            - email
+            - sms
+            - push
+            - whatsapp
+          example: 'email'
+        mensagem:
+          type: string
+          example: 'Olá! Esta é uma mensagem de teste.'
+
+    AgendamentoComunicacaoResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "6c6fa8c9-743a-4c79-9cf6-e1d5e25ad4a5"
+
+    StatusComunicacaoResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 'agendada'
+
+    ResponseError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 'ERR001'
+        message:
+          type: string
+          example: 'Error'
