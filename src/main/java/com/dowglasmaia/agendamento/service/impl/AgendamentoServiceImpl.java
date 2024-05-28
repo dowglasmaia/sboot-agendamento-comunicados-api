@@ -32,7 +32,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
             var requestMapper = toAgendamentoDocument(comunicacaoRequest);
 
             try {
-                var agendamento = repository.insert(requestMapper);
+                var agendamento = repository.save(requestMapper);
                 return toAgendamentoResponse(agendamento);
             } catch (Exception e) {
                 log.error("Falhou em criar agendamento para solicitação: {}", comunicacaoRequest, e);

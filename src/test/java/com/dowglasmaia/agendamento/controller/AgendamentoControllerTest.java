@@ -1,6 +1,7 @@
 package com.dowglasmaia.agendamento.controller;
 
 
+import com.dowglasmaia.agendamento.mocks.MockBuild;
 import com.dowglasmaia.agendamento.service.AgendamentoService;
 import com.dowglasmaia.provider.model.AgendamentoComunicacaoRequestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +44,9 @@ public class AgendamentoControllerTest {
     @SneakyThrows
     @Test
     public void souldAgendarComunicacaoSuccessfully(){
-        var requestMock = agendamentoComunicacaoRequestMock();
+        var requestMock = MockBuild.agendamentoComunicacaoRequestMock(
+              "20/12/2222","02:02","maia@maia.com", AgendamentoComunicacaoRequestDTO.TipoDestinatarioEnum.EMAIL
+        );
         var responseMock = agendamentoComunicacaoResponseMock();
 
         when(service.insert(any(AgendamentoComunicacaoRequestDTO.class)))
