@@ -52,13 +52,20 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
     @Override
     public void removeAgendamento(String id){
-        log.info("Iniciando Method removeAgendamento(): {}", id);
-        repository.findById(id)
-              .map(agendamento -> {
-                  agendamento.setStatus(StatusAgendamento.CANCELADO);
-                  return repository.save(agendamento);
-              })
-              .orElseThrow(() -> new BusinessException("Agendamento não encontrado", HttpStatus.NOT_FOUND));
+        log.info("Iniciando removeAgendamento() para o ID: {}", id);
+        try {
+            repository.findById(id)
+                  .map(agendamento -> {
+                      log.info("Agendamento encontrado para o ID: {}. Alterando status para CANCELADO.", id);
+                      agendamento.setStatus(StatusAgendamento.CANCELADO);
+                      return repository.save(agendamento);
+                  })
+                  .orElseThrow(() -> new BusinessException("Agendamento não encontrado", HttpStatus.NOT_FOUND));
+            log.info("Agendamento com ID: {} foi cancelado com sucesso.", id);
+        } catch (Exception e) {
+            log.error("Erro ao tentar cancelar o agendamento com ID: {}", id, e);
+            throw e;
+        }
     }
 
 }

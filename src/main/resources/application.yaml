@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: agendamento-api
@@ -9,3 +11,14 @@ spring:
       username: root
       password: example
       database: agendamento
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+    admin:
+      client-id: admin
