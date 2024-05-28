@@ -5,6 +5,7 @@ import com.dowglasmaia.agendamento.service.AgendamentoService;
 import com.dowglasmaia.provider.api.ComunicadosApi;
 import com.dowglasmaia.provider.model.AgendamentoComunicacaoRequestDTO;
 import com.dowglasmaia.provider.model.AgendamentoComunicacaoResponseDTO;
+import com.dowglasmaia.provider.model.StatusComunicacaoResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,15 @@ public class AgendamentoController implements ComunicadosApi {
 
 
     public ResponseEntity<AgendamentoComunicacaoResponseDTO> agendarComunicacao(AgendamentoComunicacaoRequestDTO body){
+        return ResponseEntity
+              .status(HttpStatus.CREATED)
+              .body(service.insert(body));
+    }
 
-        var response = service.insert(body);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<StatusComunicacaoResponseDTO> consultarStatusComunicacao(String id){
+        return ResponseEntity
+              .status(HttpStatus.OK)
+              .body(service.getStatusById(id));
     }
 
 

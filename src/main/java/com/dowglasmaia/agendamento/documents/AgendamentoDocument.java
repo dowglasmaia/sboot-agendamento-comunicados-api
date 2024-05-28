@@ -1,16 +1,13 @@
 package com.dowglasmaia.agendamento.documents;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Data
 @Document(collection = "agendamento")
 public class AgendamentoDocument {
@@ -22,4 +19,9 @@ public class AgendamentoDocument {
     private String tipoDestinatario;
     private String mensagem;
     private Instant dataHoraAgendada;
+    private StatusAgendamento status;
+
+    public AgendamentoDocument(){
+        this.status = StatusAgendamento.AGENDADO;
+    }
 }

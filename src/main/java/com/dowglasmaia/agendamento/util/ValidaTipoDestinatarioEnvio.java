@@ -14,7 +14,7 @@ public class ValidaTipoDestinatarioEnvio {
             return true;
         }
 
-        if (TipoDestinatarioEnum.PUSH.equals(tipo)) {
+        if (TipoDestinatarioEnum.PUSH.equals(tipo) ) {
             return true;
         }
 

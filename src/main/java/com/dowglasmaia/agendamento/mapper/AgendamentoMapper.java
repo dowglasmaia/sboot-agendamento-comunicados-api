@@ -4,6 +4,7 @@ import com.dowglasmaia.agendamento.documents.AgendamentoDocument;
 import com.dowglasmaia.agendamento.util.ValidaDateHora;
 import com.dowglasmaia.provider.model.AgendamentoComunicacaoRequestDTO;
 import com.dowglasmaia.provider.model.AgendamentoComunicacaoResponseDTO;
+import com.dowglasmaia.provider.model.StatusComunicacaoResponseDTO;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -29,6 +30,13 @@ public class AgendamentoMapper {
     public static AgendamentoComunicacaoResponseDTO toAgendamentoResponse(AgendamentoDocument document){
         AgendamentoComunicacaoResponseDTO response = new AgendamentoComunicacaoResponseDTO();
         response.setId(document.getId());
+        return response;
+    }
+
+    public static StatusComunicacaoResponseDTO toStatusComunicacaoResponse(AgendamentoDocument document){
+        StatusComunicacaoResponseDTO response = new StatusComunicacaoResponseDTO();
+        response.setStatus(document.getStatus().name());
+
         return response;
     }
 }
