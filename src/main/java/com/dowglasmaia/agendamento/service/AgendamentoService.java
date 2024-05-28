@@ -10,4 +10,6 @@ public interface AgendamentoService {
 
     StatusComunicacaoResponseDTO getStatusById(String id);
 
+    void removeAgendamento(String id);
+
 }

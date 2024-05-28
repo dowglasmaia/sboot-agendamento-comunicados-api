@@ -20,7 +20,6 @@ public class AgendamentoController implements ComunicadosApi {
 
     private final AgendamentoService service;
 
-
     public ResponseEntity<AgendamentoComunicacaoResponseDTO> agendarComunicacao(AgendamentoComunicacaoRequestDTO body){
         return ResponseEntity
               .status(HttpStatus.CREATED)
@@ -33,5 +32,9 @@ public class AgendamentoController implements ComunicadosApi {
               .body(service.getStatusById(id));
     }
 
+    public ResponseEntity<Void> removerComunicacao(String id){
+        service.removeAgendamento(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 }

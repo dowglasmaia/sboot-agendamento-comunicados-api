@@ -1,5 +1,6 @@
 package com.dowglasmaia.agendamento.service.impl;
 
+import com.dowglasmaia.agendamento.documents.StatusAgendamento;
 import com.dowglasmaia.agendamento.execptions.BusinessException;
 import com.dowglasmaia.agendamento.repository.AgendamentoRepository;
 import com.dowglasmaia.agendamento.service.AgendamentoService;
@@ -46,7 +47,18 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         log.info("Iniciando Method getStatusById(): {}", id);
         return repository.findById(id)
               .map(response -> toStatusComunicacaoResponse(response))
-              .orElseThrow(() -> new BusinessException("Agendamento não encontrado", HttpStatus.FOUND));
+              .orElseThrow(() -> new BusinessException("Agendamento não encontrado", HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public void removeAgendamento(String id){
+        log.info("Iniciando Method removeAgendamento(): {}", id);
+        repository.findById(id)
+              .map(agendamento -> {
+                  agendamento.setStatus(StatusAgendamento.CANCELADO);
+                  return repository.save(agendamento);
+              })
+              .orElseThrow(() -> new BusinessException("Agendamento não encontrado", HttpStatus.NOT_FOUND));
     }
 
 }
