@@ -5,14 +5,14 @@ spring:
     name: agendamento-api
   data:
     mongodb:
-      host: localhost
+      host: mongo
       port: 27017
       authentication-database: admin
       username: root
       password: example
       database: agendamento
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: kafka:29092
     consumer:
       auto-offset-reset: earliest
       enable-auto-commit: true
@@ -22,3 +22,30 @@ spring:
         spring.json.trusted.packages: '*'
     admin:
       client-id: admin
+
+management:
+  tracing:
+    sampling:
+      probability: 1
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    enable:
+      jvm: true
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: agendamento-api
+    distribution:
+      slo:
+        http: '5ms,10ms,25ms,50ms,100ms,200ms,300ms,400ms,500ms,1s,2s'
+      percentiles-histogram:
+        http:
+          server:
+            requests: true

@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "1296a9a2-5186-4101-b9db-349270379608",
+		"name": "Agendamento de Comunicados",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5139994"
+	},
+	"item": [
+		{
+			"name": "Criar Agendamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"dataEnvio\": \"29/05/2024\",\r\n \"horaEnvio\": \"09:48\",\r\n \"destinatario\": \"48988529845\",\r\n \"tipoDestinatario\": \"whatsapp\",\r\n \"mensagem\": \"Este é um texto de exemplo para testar um comprimento de exatamente trezentos caracteres. Vamos preencher com mais algumas palavras e frases para garantir que atingimos o número desejado. Continuamos a escrever até que finalmente alcançamos o limite estabelecido para este teste específico. Muito obrigado!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/comunicados/agendamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"comunicados",
+						"agendamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Status Por AgendamentoId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/comunicados/agendamentos/status?id=6655f2ef260a1c0f8dc2e5b2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"comunicados",
+						"agendamentos",
+						"status"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6655f2ef260a1c0f8dc2e5b2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Agendamento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/comunicados/agendamentos?id=6655e0f938c4a70849112e47",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"comunicados",
+						"agendamentos"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6655e0f938c4a70849112e47"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
