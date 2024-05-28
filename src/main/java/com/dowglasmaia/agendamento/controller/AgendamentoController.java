@@ -11,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.dowglasmaia.agendamento.mapper.AgendamentoMapper.toAgendamentoDocument;
-import static com.dowglasmaia.agendamento.mapper.AgendamentoMapper.toAgendamentoResponse;
-
 
 @RequiredArgsConstructor
 @RestController
@@ -25,11 +22,9 @@ public class AgendamentoController implements ComunicadosApi {
 
     public ResponseEntity<AgendamentoComunicacaoResponseDTO> agendarComunicacao(AgendamentoComunicacaoRequestDTO body){
 
-        var request = toAgendamentoDocument(body);
+        var response = service.insert(body);
 
-        var response = service.insert(request);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(toAgendamentoResponse(response));
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 

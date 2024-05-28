@@ -1,10 +1,11 @@
 package com.dowglasmaia.agendamento.service;
 
-import com.dowglasmaia.agendamento.documents.AgendamentoDocument;
+import com.dowglasmaia.provider.model.AgendamentoComunicacaoRequestDTO;
+import com.dowglasmaia.provider.model.AgendamentoComunicacaoResponseDTO;
 
 public interface AgendamentoService {
 
-    AgendamentoDocument insert(AgendamentoDocument document);
+    AgendamentoComunicacaoResponseDTO insert(AgendamentoComunicacaoRequestDTO document);
 
 
 }
