@@ -65,14 +65,14 @@ services:
     environment:
       KAFKA_BROKERCONNECT: kafka:9092
 
-  agendamento-comunicado-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    networks:
-      - api
-    depends_on:
-      - mongo
+#  agendamento-comunicado-api:
+#    build:
+#      context: .
+#     dockerfile: Dockerfile
+#   ports:
+#      - "8080:8080"
+#    networks:
+#      - api
+#    depends_on:
+#      - mongo
 

@@ -1,18 +1,18 @@
 server:
-  port: 8080
+  port: 8001
 spring:
   application:
     name: agendamento-api
   data:
     mongodb:
-      host: mongo
+      host: localhost
       port: 27017
       authentication-database: admin
       username: root
       password: example
       database: agendamento
   kafka:
-    bootstrap-servers: kafka:29092
+    bootstrap-servers: localhost:29092
     consumer:
       auto-offset-reset: earliest
       enable-auto-commit: true
@@ -22,6 +22,23 @@ spring:
         spring.json.trusted.packages: '*'
     admin:
       client-id: admin
+
+#Keycloak client config
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: CLIENT_SPRING
+            client-secret: b17f20d0-e24d-4fcd-8b5a-06ca065647e5
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/KEALM_SPRING_API
+            user-name-attribute: preferred_username
+
+
 
 management:
   tracing:
