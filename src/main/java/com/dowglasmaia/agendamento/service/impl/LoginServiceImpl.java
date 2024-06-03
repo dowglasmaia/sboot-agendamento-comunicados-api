@@ -23,6 +23,8 @@ public class LoginServiceImpl implements LoginService {
     @Value("${keycloak.realm}")
     private String realm;
 
+
+
     @Value("${keycloak.resource}")
     private String clientId;
 
@@ -46,6 +48,31 @@ public class LoginServiceImpl implements LoginService {
               .withgrantType(grantType)
               .withPassword(user.getPassword())
               .withUsername(user.getUserName())
+              .build();
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, httpComponent.httpHeaders());
+
+        try {
+            ResponseEntity<String> response = httpComponent.restTemplate().postForEntity(
+                  keycloakServerUrl + "/protocol/openid-connect/token",
+                  request,
+                  String.class
+            );
+            return ResponseEntity.ok(response.getBody());
+
+        } catch (HttpClientErrorException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> refreshToken(String string){
+        httpComponent.httpHeaders().setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map = HttpParamsMapBuilder.builder()
+              .withClent(clientId)
+              .withClientSecret(clientSecret)
+              .withgrantType("refresh_token")
               .build();
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, httpComponent.httpHeaders());

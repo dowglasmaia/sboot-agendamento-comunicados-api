@@ -5,10 +5,7 @@ import com.dowglasmaia.agendamento.models.User;
 import com.dowglasmaia.agendamento.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,5 +20,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody User user){
         return loginService.login(user);
+    }
+
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refresh(@RequestParam("refresh_token") String refreshToken){
+        return loginService.refreshToken(refreshToken);
     }
 }
