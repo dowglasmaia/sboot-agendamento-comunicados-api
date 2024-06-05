@@ -9,6 +9,16 @@
 		{
 			"name": "Criar Agendamento",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuLTJtdEZ1LXZpeHRoTEt3ZFlRUWdfUW53N0RYU1lTMUkway0wSEtYVFdVIn0.eyJleHAiOjE3MTc0NDAwNDcsImlhdCI6MTcxNzQzOTc0NywianRpIjoiY2RiYzdmNmQtNTZiMy00MWU3LTg5NTgtZjA4OGJkNWRkNjk5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0tFQUxNX1NQUklOR19BUEkiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNjIyMTAzNzctNWI4Yy00MzZhLTg4MDEtYjk0MDk4Yjk2MWJjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiQ0xJRU5UX1NQUklORyIsInNlc3Npb25fc3RhdGUiOiIxMWViZmNjMi0yN2JlLTQ5OWQtYjlhNi1iOTdhMDRhODVmYzciLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiQURNSU5fUkVBRCIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1rZWFsbV9zcHJpbmdfYXBpIiwiQURNSU5fV1JJVEUiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjExZWJmY2MyLTI3YmUtNDk5ZC1iOWE2LWI5N2EwNGE4NWZjNyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRG93Z2xhcyBNYWlhIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiZG93Z2xhcyIsImdpdmVuX25hbWUiOiJEb3dnbGFzIiwiZmFtaWx5X25hbWUiOiJNYWlhIiwiZW1haWwiOiJkb3dnbGFzbWFpYUBtYWlhLmNvbSJ9.Sfi-8kg9exqwTFGXcmGwtev7pVK_84C9dSwuGlzxtwtqBL5Gdeg8Bdyws6t1TpsXx_3MG_KULOJ4U74N61KLY6eHouWHemALFX7tEBtKSfzgVjZ72_NRox3DUaxNM1nDk9Ho_Onfil9xBgyCAgwtCV7nLeBPOia00J3_uOwf-YgCds30GA2AbPdoUkyH0FPrSd5wm2EztGwguV3pdkAkw5wqsIZ68yDyxDForMMtdMz1l6sNpeBZcwHGkzeToYNHW95ZqTTEWohPZBc4zl9TqF74MW-OccRpheg70UNKeSsb-6kMdUgqtTXYnCuIMy9AkzYGB2CU9ME0TvEGMmkhjA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -21,17 +31,156 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/comunicados/agendamentos",
+					"raw": "http://localhost:8001/api/v1/comunicados/agendamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"comunicados",
+						"agendamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"username\": \"dowglas\",\r\n \"password\": \"KayKam@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "CLIENT_SPRING",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "fVnAyfszSkbDf6BDIp67eYtnkJuoqv1F",
+						"disabled": true
+					},
+					{
+						"key": "grant_type",
+						"value": "password",
+						"disabled": true
+					},
+					{
+						"key": "username",
+						"value": "dowglas",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "KayKam@123",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "CLIENT_SPRING",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "fVnAyfszSkbDf6BDIp67eYtnkJuoqv1F",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "dowglas",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "KayKam@123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/realms/KEALM_SPRING_API/protocol/openid-connect/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"auth",
+						"realms",
+						"KEALM_SPRING_API",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-Refresh_Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8001/api/v1/auth/refresh?refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwMzBjZTM4My0zYThmLTQzNWYtOWM4Ny1jMjliM2VkNzYxOTMifQ.eyJleHAiOjE3MTc0MzgwNDEsImlhdCI6MTcxNzQzNjI0MSwianRpIjoiOWFkZmNlN2UtYjZmZi00ZThkLTk0NTgtMTk3MWJjNjk1NjhlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0tFQUxNX1NQUklOR19BUEkiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvS0VBTE1fU1BSSU5HX0FQSSIsInN1YiI6IjYyMjEwMzc3LTViOGMtNDM2YS04ODAxLWI5NDA5OGI5NjFiYyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJDTElFTlRfU1BSSU5HIiwic2Vzc2lvbl9zdGF0ZSI6Ijg0YWYyY2NlLTFkNGMtNDIxNy05OTRjLTM0MzQ5MjgwM2M3NSIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijg0YWYyY2NlLTFkNGMtNDIxNy05OTRjLTM0MzQ5MjgwM2M3NSJ9.0OlFffpgJLaNZOITIX2xbQOptCWtul9colGYMX5CXpM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
 						"api",
 						"v1",
-						"comunicados",
-						"agendamentos"
+						"auth",
+						"refresh"
+					],
+					"query": [
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwMzBjZTM4My0zYThmLTQzNWYtOWM4Ny1jMjliM2VkNzYxOTMifQ.eyJleHAiOjE3MTc0MzgwNDEsImlhdCI6MTcxNzQzNjI0MSwianRpIjoiOWFkZmNlN2UtYjZmZi00ZThkLTk0NTgtMTk3MWJjNjk1NjhlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0tFQUxNX1NQUklOR19BUEkiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvS0VBTE1fU1BSSU5HX0FQSSIsInN1YiI6IjYyMjEwMzc3LTViOGMtNDM2YS04ODAxLWI5NDA5OGI5NjFiYyIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJDTElFTlRfU1BSSU5HIiwic2Vzc2lvbl9zdGF0ZSI6Ijg0YWYyY2NlLTFkNGMtNDIxNy05OTRjLTM0MzQ5MjgwM2M3NSIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijg0YWYyY2NlLTFkNGMtNDIxNy05OTRjLTM0MzQ5MjgwM2M3NSJ9.0OlFffpgJLaNZOITIX2xbQOptCWtul9colGYMX5CXpM"
+						}
 					]
 				}
 			},
@@ -69,6 +218,16 @@
 		{
 			"name": "Remover Agendamento",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuLTJtdEZ1LXZpeHRoTEt3ZFlRUWdfUW53N0RYU1lTMUkway0wSEtYVFdVIn0.eyJleHAiOjE3MTc0NDA0NTEsImlhdCI6MTcxNzQ0MDE1MSwianRpIjoiNDBmYjMwMGMtMGI3Ny00ZDZjLTkxOGYtNzliNmQwMTY4NWYwIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0tFQUxNX1NQUklOR19BUEkiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNjIyMTAzNzctNWI4Yy00MzZhLTg4MDEtYjk0MDk4Yjk2MWJjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiQ0xJRU5UX1NQUklORyIsInNlc3Npb25fc3RhdGUiOiJkNTJmNzBkNS00ODllLTQ3NzYtOGYxNC04NDZiODc0MzRmNjAiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiQURNSU5fUkVBRCIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1rZWFsbV9zcHJpbmdfYXBpIiwiQURNSU5fV1JJVEUiXX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6ImQ1MmY3MGQ1LTQ4OWUtNDc3Ni04ZjE0LTg0NmI4NzQzNGY2MCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRG93Z2xhcyBNYWlhIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiZG93Z2xhcyIsImdpdmVuX25hbWUiOiJEb3dnbGFzIiwiZmFtaWx5X25hbWUiOiJNYWlhIiwiZW1haWwiOiJkb3dnbGFzbWFpYUBtYWlhLmNvbSJ9.tmyf-VcayvZlpz0o-3tWu6dSp-6hwqTiurzN2nC0zt92Ydve6VGNA4jZqHOGjhiRKc_Bpl-wv3_Tu0i1ZtOvnyrc9-crpL7mQM7IRVasJgIN8M_73dMFn767TlmZOi6emL_-xpJ86NLYR7HDSsYPUg_YgllJzTdFeqmivSTk0Q6cSq8O_QOsGe8zjYJfyvNlM3SW8d2qYdMFixZ7j6_dUtB4yK8e99fx89CzCSl5QlydmwuYNVomnJS8EVqpF-RmwqmwwT0qo36zxZo8R-PpUFuI6G3wdAvZcY3XXPOvuf9RKgqyDGH_81hzuU8MyGsM74kl_AGif-W_VS3HJ_7Ztw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
