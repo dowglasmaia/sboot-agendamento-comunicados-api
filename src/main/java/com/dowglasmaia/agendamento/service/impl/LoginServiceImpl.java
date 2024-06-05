@@ -66,13 +66,14 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public ResponseEntity<String> refreshToken(String string){
+    public ResponseEntity<String> refreshToken(String refreshToken){
         httpComponent.httpHeaders().setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> map = HttpParamsMapBuilder.builder()
               .withClent(clientId)
               .withClientSecret(clientSecret)
               .withgrantType("refresh_token")
+              .withRefreshToken(refreshToken)
               .build();
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, httpComponent.httpHeaders());
