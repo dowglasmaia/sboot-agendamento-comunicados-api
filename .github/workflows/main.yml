@@ -14,5 +14,16 @@ jobs:
       - name: Docker build chatservice
         run: echo "Docker Build chatServices"
       - name: Docker build api
-        run: echo "Docker Build api"   
+        run: echo "Docker Build api"
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Autenticar com AWS CLI
+        run: echo "Configurar aws config"
+      - name: Configurar o Kubectl
+        run: echo "Configurar o Kubectl"
+      - name: Deploy da Aplicação
+        run: echo "Deploy da Aplicação"   
+             
       
