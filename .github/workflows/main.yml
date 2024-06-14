@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Comando LS
+        run: ls -l
       - name: Docker build chatservice
         run: echo "Docker Build chatServices"
       - name: Docker build api
